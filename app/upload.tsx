@@ -61,6 +61,19 @@ export default function FileUploadForm({results, setResults}) {
           }}
         />
       </label>
+      {file && (
+        <Box
+          sx={{
+            marginBottom: '20px',
+            marginTop:'0px',
+            borderRadius: 5,
+            width: '100%',
+            textAlign: 'center',
+          }}
+        >
+          {file.name} selected
+        </Box>
+      )}
       <Button
         variant="contained"
         type="submit"

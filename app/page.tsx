@@ -10,7 +10,8 @@ import * as motion from "motion/react-client"
 import type { Variants } from "motion/react"
 import InstructionsStepper from './instructions'
 import { ResultsType } from '../types/results'
-import DumbbellAnimation from './dumbbell';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MotionPath from './squigglePath';
 
 
 export default function Home() {
@@ -24,8 +25,9 @@ export default function Home() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#122937',
+        backgroundColor: '#0e3c58',
         color: '#f5f5f5',
+        fontFamily:'Trebuchet MS, sans-serif'
       }}
     >   
 
@@ -46,7 +48,7 @@ export default function Home() {
         </Typography>
      </Box>
     <Box sx={{display:'flex',justifyContent: 'flex-end', margin:2}}>
-      <Box sx={{ display: 'flex', gap: 2, marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2}}>
         <Link href="https://github.com/caramurphyy/StrongWrappedApp" target="_blank" rel="noopener noreferrer">
           <Github style={{ width: 30, height: 30, color: '#f5f5f5' }} />
         </Link>
@@ -64,13 +66,77 @@ export default function Home() {
           flexDirection:'column', 
            display:'flex',
             alignItems: 'center',
-
-
+            marginLeft:5,
+            marginRight:5,
+     
         }}
       >
-        {/* <DumbbellAnimation/> */}
-   <Typography variant="h5" >Ready to see your 2024 in the gym? </Typography>
-        <InstructionsStepper results={results} setResults={setResults}/>
+
+<Box 
+  sx={{ 
+    display: "flex", 
+    flexDirection: "column", 
+    backgroundColor: "#f5f5f5", 
+    width: "100%", 
+    padding: 5, 
+    alignItems: "center", 
+  }}>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexDirection: "row", 
+          justifyContent: "space-around", 
+          alignItems: "center", 
+          textAlign: 'left', 
+          flexWrap: "nowrap", 
+          gap: 2,
+        }}
+      >
+        <Typography 
+          variant="h1" 
+          fontWeight="bold"
+          color="#0e3c58" 
+          sx={{ 
+            fontSize: { xs: "3rem", sm: "4rem", md: "5rem" }, 
+            flex: "1 1 300px",
+            fontFamily: 'Trebuchet MS, sans-serif',
+          }}
+        >
+          READY TO SEE <br />YOUR <span style={{ color: "#00aaff" }}>2024</span><br /> IN THE GYM?
+        </Typography>
+        <Box 
+          component="img" 
+          src="/strongGraphic.svg" 
+          alt="Dumbbell graphic" 
+          sx={{ 
+            width: { xs: "100%", sm: "50%", md: "40%" }, 
+            maxWidth: "500px", 
+            flex: "0 0 auto", 
+            marginLeft: { xs: 0, sm: 2 }, // Ensures spacing when screen size allows
+            display: { xs: 'none', sm: 'block' } // Hides the image at xs screen sizes
+          }} 
+        />
+      </Box>
+<motion.div
+  whileHover={{ scale: 1.5 }}
+  whileTap={{ scale: 0.8 }}
+  style={{ marginTop: 20, cursor: 'pointer' }} // Add cursor pointer for better UX
+  onClick={() => {
+    const element = document.getElementById('instructions-stepper');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }}
+>
+  <ExpandMoreIcon style={{ fontSize: 80, color: '#0e3c58' }} />
+</motion.div>
+
+</Box>
+
+<Box id="instructions-stepper" sx={{ padding: 2, margin: 5, borderRadius: 5, backgroundColor: '#082B3F' }}>
+  <InstructionsStepper results={results} setResults={setResults} />
+</Box>
+
 
 
       </Box>
@@ -78,7 +144,8 @@ export default function Home() {
 
       
       {results && (
-
+        <Box>
+          <MotionPath/>
 <motion.div
 initial={{ opacity: 0, scale: 0 }}
 animate={{ opacity: 1, scale: 1 }}
@@ -143,7 +210,7 @@ transition={{
             </motion.div>
         </motion.div>
 </motion.div>
-
+</Box>
   )}
   </Box>
 )}

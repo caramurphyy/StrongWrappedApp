@@ -81,7 +81,7 @@ html, body {
   height: 100%;
   background-color: #122937; /* Navy blue background */
   color: #f5f5f5; /* Default text color */
-  font-family: Inter, sans-serif; /* Default font */
+  font-family: Trebuchet MS, sans-serif; /* Default font */
   overflow-x: hidden;
 }
 

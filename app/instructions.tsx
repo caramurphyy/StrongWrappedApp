@@ -12,6 +12,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileUploadForm from './upload';
 import { ResultsType } from '../types/results'
+import * as motion from "motion/react-client"
 
 // const steps = [
 //   {icon: <img src="/stronglogo.png" width="30px" height="30px"/>, instructions:'open the Strong app on your phone'},
@@ -82,21 +83,30 @@ export default function InstructionsStepper({results, setResults}) {
                 disableRipple
                   onClick={() => { if (activeStep < steps.length - 1) { handleNext(); } }}
                   sx={{ mt: 1, mr: 1,"&:hover": {
-                    backgroundColor: "#f3f3f3",
+                    backgroundColor: "transparent",
   
                   } }}
-                >
-                  {index === steps.length - 1 ? <FileUploadForm results={results} setResults={setResults}/> : <ArrowDownwardIcon/>}
+                >  
+                  {index === steps.length - 1 ? <FileUploadForm results={results} setResults={setResults}/> :     <motion.div
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.8 }}
+            > <ArrowDownwardIcon/>   </motion.div>}
+               
                 </Button>
                 <Button 
                 disableRipple
                   disabled={index === 0}
                   onClick={handleBack}
                   sx={{ mt: 1, mr: 1,  "&:hover": {
-                    backgroundColor: "#f3f3f3",
+                    backgroundColor: "transparent",
                   } }}
                 >
+              <motion.div
+            whileHover={{ scale: 1.3 }}
+            whileTap={{ scale: 0.8 }}
+        >
                   <ArrowUpwardIcon/>
+                  </motion.div>
                 </Button>
               </Box>
             </StepContent>
