@@ -1,9 +1,0 @@
-{
-    "version": 2,
-    "functions": {
-      "app/api/process-csv/route.ts": {
-        "maxDuration": 60
-      }
-    }
-  }
-  
