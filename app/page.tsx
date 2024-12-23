@@ -74,9 +74,9 @@ export default function Home() {
             >
               <Github style={{ width: 30, height: 30, color: '#f5f5f5' }} />
             </Link>
-            <Link href="/info">
+            {/* <Link href="/info">
               <Info style={{ width: 30, height: 30, color: '#f5f5f5' }} />
-            </Link>
+            </Link> */}
           </Box>
         </Box>
       </Box>
@@ -167,7 +167,7 @@ export default function Home() {
         </Box>
       )}
 
-      {results && (
+      {results && results.num_workouts!=null && (
         <Box>
           <Box
             sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
