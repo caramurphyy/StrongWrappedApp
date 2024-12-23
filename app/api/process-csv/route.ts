@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Execute the Python script
-    const pythonPath = 'python';
+    const pythonPath = 'python3';
     const results = await new Promise((resolve, reject) => {
       exec(
         `${pythonPath} ${scriptPath} ${tempFilePath}`,
