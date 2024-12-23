@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { exec } from 'child_process';
-import { writeFile, unlink, mkdir } from 'fs/promises';
+import { writeFile, unlink, mkdir, access } from 'fs/promises';
 import path from 'path';
-import fs from 'fs';
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -12,7 +11,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
   }
 
-  const tempDir = path.join(process.cwd(), 'uploads');
+  const tempDir = '/tmp';
   const tempFilePath = path.join(tempDir, file.name);
   const scriptPath = path.join(process.cwd(), 'scripts', 'process_csv.py');
 
@@ -21,15 +20,18 @@ export async function POST(req: NextRequest) {
     await mkdir(tempDir, { recursive: true });
 
     // Save the uploaded file temporarily
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir);
-    }
-    const filePath = path.join(tempDir, file.name);
     const buffer = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(filePath, new Uint8Array(buffer));
+    await writeFile(tempFilePath, new Uint8Array(buffer));
+
+    // Check if the file was saved successfully
+    try {
+      await access(tempFilePath);
+    } catch {
+      throw new Error('File was not saved correctly.');
+    }
 
     // Execute the Python script
-    const pythonPath = 'python3';
+    const pythonPath = 'python';
     const results = await new Promise((resolve, reject) => {
       exec(
         `${pythonPath} ${scriptPath} ${tempFilePath}`,

@@ -167,7 +167,7 @@ export default function Home() {
         </Box>
       )}
 
-      {results && results.num_workouts!=null && (
+      {results && results.num_workouts != null && (
         <Box>
           <Box
             sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
