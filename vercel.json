@@ -2,14 +2,8 @@
     "version": 2,
     "builds": [
       {
-        "src": "Dockerfile",
-        "use": "@vercel/docker"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/"
+        "src": "api/process-csv.py",
+        "use": "@vercel/python"
       }
     ]
   }
