@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CSV Processor',
-  description: 'Process your CSV files with ease',
+  title: 'Strong Wrapped',
+  description: 'A summary of your activity logged on the Strong app for the past year, similar to Spotify Wrapped',
 };
 
 export default function RootLayout({

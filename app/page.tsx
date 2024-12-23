@@ -169,93 +169,100 @@ export default function Home() {
 
       {results && results.num_workouts != null && (
         <Box>
-          <Box
-            sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-          >
+            <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: 'center',
+              marginBottom:2,
+            }}
+            >
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginLeft: 5,
-                marginRight: 2,
-                backgroundColor: '#042C46',
-                borderRadius: 10,
-                padding: 5,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin:2,
+              backgroundColor: '#042C46',
+              borderRadius: 10,
+              padding: 5,
+              marginBottom: { xs: 2, sm: 0 },
               }}
             >
               <Typography variant="h4" color="#f5f5f5">
-                You lifted
+              You lifted
               </Typography>
               <Typography
-                variant="h1"
+              variant="h1"
+              sx={{
+                fontSize: { xs: '3rem', sm: '5rem', md: '7rem', lg: '10rem' },
+                fontWeight: 'bold',
+                color: '#00aaff',
+                marginBottom: 2,
+              }}
+              >
+              <Box
                 sx={{
-                  fontSize: { xs: '3rem', sm: '5rem', md: '7rem', lg: '10rem' },
-                  fontWeight: 'bold',
-                  color: '#00aaff',
-                  marginBottom: 2,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'baseline',
                 }}
               >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'baseline',
-                  }}
-                >
-                  <CountUp
-                    end={parseFloat(results.total_weight_lifted.toFixed(0))}
-                    duration={3}
-                    separator=","
-                    onEnd={() => setAnimationComplete(true)}
-                  />{' '}
-                  <span style={{ fontSize: '2rem' }}>lbs</span>
-                </Box>
+                <CountUp
+                end={parseFloat(results.total_weight_lifted.toFixed(0))}
+                duration={3}
+                separator=","
+                onEnd={() => setAnimationComplete(true)}
+                />{' '}
+                <span style={{ fontSize: '2rem' }}>lbs</span>
+              </Box>
               </Typography>
               <Typography variant="h6" color="#f5f5f5">
-                in 2024. That's equivalent to {results.total_weight_lifted / 45}{' '}
-                plates!
+              in 2024. That's equivalent to {(results.total_weight_lifted / 45).toFixed(0)}{' '}
+              plates!
               </Typography>
             </Box>
 
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                textAlign: 'center',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginRight: 5,
-                flexWrap: 'wrap',
-                gap: 2,
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              textAlign: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: 2,
+              flexWrap: 'wrap',
+              gap: 2,
               }}
             >
               <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
-                <Box
-                  component="img"
-                  src="./elephant.svg"
-                  alt="African Elephant"
-                  sx={{
-                    maxWidth: { xs: '100%', sm: '75%', md: '50%', lg: '350px' },
-                    width: '100%',
-                    flex: '1 1 auto',
-                  }}
-                />
+              <Box
+                component="img"
+                src="./elephant.svg"
+                alt="African Elephant"
+                sx={{
+                maxWidth: { xs: '100%', sm: '75%', md: '50%', lg: '350px' },
+                width: '100%',
+                flex: '1 1 auto',
+                }}
+              />
               </motion.div>
               <Typography
-                variant="h6"
-                color="#f5f5f5"
-                sx={{
-                  flex: '1 1 auto',
-                  minWidth: '200px',
-                  maxWidth: '400px',
-                }}
+              variant="h6"
+              color="#f5f5f5"
+              sx={{
+                flex: '1 1 auto',
+                minWidth: '200px',
+                maxWidth: '400px',
+              }}
               >
-                {results.total_weight_lifted > 13000
-                  ? "You've lifted the weight of this elephant! But have you hit 225..."
-                  : "Keep going! Maybe next year you'll be able to say you lifted this elephant in weight."}
+              {results.total_weight_lifted > 13000
+                ? "You've lifted the weight of this elephant! But have you hit 225..."
+                : "Keep going! Maybe next year you'll be able to say you lifted this elephant in weight."}
               </Typography>
             </Box>
-          </Box>
+            </Box>
 
           <Box
             sx={{
@@ -300,9 +307,8 @@ export default function Home() {
                 </motion.div>
               </motion.div>
             </motion.div>
-          </Box>
-          {/* <AnimatedLine /> */}
-          <Box
+            </Box>
+            <Box
             sx={{
               display: 'flex',
               flexDirection: 'row',
@@ -313,99 +319,99 @@ export default function Home() {
               gap: 5,
               flexWrap: 'wrap',
             }}
-          >
+            >
             <motion.div
               whileHover={{ scale: 1.1 }}
-              style={{ ...timeCard, flexDirection: 'row', flex: '1 1 35%' }}
+              style={{ ...timeCard, flexDirection: 'row', flex: '1 1 100%', maxWidth: '500px', }}
             >
               <Box
-                component="img"
-                src="/calendar.svg"
-                alt="calendar graphic"
-                sx={{
-                  flex: '1 1 30%',
-                  maxWidth: '150px',
-                  marginRight: 2,
-                }}
+              component="img"
+              src="/calendar.svg"
+              alt="calendar graphic"
+              sx={{
+              flex: '1 1 30%',
+              maxWidth: '150px',
+              margin: 2,
+              }}
               />
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography
-                  variant="h1"
-                  style={{ fontSize: '3rem', fontWeight: 'bold' }}
-                  color="#00aaff"
-                >
-                  {results.most_common_day}'s
-                </Typography>
-                <Typography variant="h6" color="#0e3c58">
-                  are your favorite day to workout!
-                </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 1 70%' }}>
+              <Typography
+              variant="h1"
+              style={{ fontSize: '3rem', fontWeight: 'bold' }}
+              color="#00aaff"
+              >
+              {results.most_common_day}'s
+              </Typography>
+              <Typography variant="h6" color="#0e3c58">
+              are your favorite day to workout!
+              </Typography>
               </Box>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.1 }}
-              style={{ ...timeCard, flex: '1 1 35%' }}
+              style={{ ...timeCard,  flex: '1 1 100%', maxWidth: '500px' }}
             >
               <Box
-                component="img"
-                src="/clock.svg"
-                alt="clock graphic"
-                sx={{
-                  flex: '1 1 30%',
-                  maxWidth: '150px',
-                  marginRight: 2,
-                }}
+              component="img"
+              src="/clock.svg"
+              alt="clock graphic"
+              sx={{
+              flex: '1 1 30%',
+              maxWidth: '150px',
+              marginRight: 2,
+              }}
               />
-              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                {results.most_common_time_of_day == 'Morning' && (
-                  <Typography variant="h6" color="#0e3c58">
-                    <span
-                      style={{
-                        fontSize: '2.1rem',
-                        fontWeight: 'bold',
-                        color: '#0e3c58',
-                      }}
-                    >
-                      The early bird gets the worm!
-                    </span>
-                    <br /> You tended to workout most in the mornings.
-                  </Typography>
-                )}
-                {results.most_common_time_of_day == 'Afternoon' && (
-                  <Typography variant="h6" color="#00aaff">
-                    <span
-                      style={{
-                        fontSize: '2.1rem',
-                        fontWeight: 'bold',
-                        color: '#0e3c58',
-                      }}
-                    >
-                      {' '}
-                      "Hey, can I work in?"
-                    </span>{' '}
-                    <br />
-                    Sound familiar? Your favorite time to workout was the
-                    Afternoon!
-                  </Typography>
-                )}
-                {results.most_common_time_of_day == 'Night' && (
-                  <Typography variant="h6" color="#0e3c58">
-                    <span
-                      style={{
-                        fontSize: '2.1rem',
-                        fontWeight: 'bold',
-                        color: '#0e3c58',
-                      }}
-                    >
-                      {' '}
-                      Are you a nightowl?
-                    </span>{' '}
-                    <br />
-                    Night workouts appear to be your favorite!
-                  </Typography>
-                )}
+              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 1 70%' }}>
+              {results.most_common_time_of_day == 'Morning' && (
+              <Typography variant="h6" color="#0e3c58">
+              <span
+                style={{
+                fontSize: '2.1rem',
+                fontWeight: 'bold',
+                color: '#0e3c58',
+                }}
+              >
+                The early bird gets the worm!
+              </span>
+              <br /> You tended to workout most in the mornings.
+              </Typography>
+              )}
+              {results.most_common_time_of_day == 'Afternoon' && (
+              <Typography variant="h6" color="#00aaff">
+              <span
+                style={{
+                fontSize: '2.1rem',
+                fontWeight: 'bold',
+                color: '#0e3c58',
+                }}
+              >
+                {' '}
+                "Hey, can I work in?"
+              </span>{' '}
+              <br />
+              Sound familiar? Your favorite time to workout was the
+              Afternoon!
+              </Typography>
+              )}
+              {results.most_common_time_of_day == 'Night' && (
+              <Typography variant="h6" color="#0e3c58">
+              <span
+                style={{
+                fontSize: '2.1rem',
+                fontWeight: 'bold',
+                color: '#0e3c58',
+                }}
+              >
+                {' '}
+                Are you a nightowl?
+              </span>{' '}
+              <br />
+              Night workouts appear to be your favorite!
+              </Typography>
+              )}
               </Box>
             </motion.div>
-          </Box>
+            </Box>
 
           <Box
             sx={{
@@ -416,49 +422,49 @@ export default function Home() {
               margin: 5,
             }}
           >
-            <Box
-              sx={{
-                maxWidth: '50rem',
-                margin: 5,
-                backgroundColor: 'white',
-                borderRadius: '0.75rem',
-                overflow: 'hidden', // Add this line to ensure the content doesn't overflow
-              }}
-            >
+          <Box
+            sx={{
+              maxWidth: { xs: '100%',sm: '100%', m: '50rem' },
+              margin: { xs: 2, sm: 5 },
+              backgroundColor: 'white',
+              borderRadius: '0.75rem',
+              overflow: 'hidden',
+            }}
+          >
               <ConveyorBelt />
               <Box sx={{ padding: 5 }}>
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontSize: '2.1rem',
-                    fontWeight: 'bold',
-                    color: '#00aaff',
-                  }}
-                >
-                  You performed these exercises the most:
-                </Typography>
-                <Box component="ul" sx={{ marginTop: 2 }}>
-                  {Object.entries(results.top_exercises).map(
-                    ([exercise, count], index) => (
-                      <Box key={index} component="li">
-                        <Typography
-                          variant="h3"
-                          sx={{
-                            fontSize: '1.5rem',
-                            marginBottom: 2,
-                            color: '#0e3c58',
-                          }}
-                        >
-                          <span style={{ fontWeight: 'bold' }}>
-                            {exercise}:{' '}
-                          </span>
-                          <span style={{ color: '#00aaff' }}>{count}</span>{' '}
-                          times
-                        </Typography>
-                      </Box>
-                    ),
-                  )}
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: '2.1rem',
+              fontWeight: 'bold',
+              color: '#00aaff',
+            }}
+          >
+            You performed these exercises the most:
+          </Typography>
+          <Box component="ul" sx={{ marginTop: 2 }}>
+            {Object.entries(results.top_exercises).map(
+              ([exercise, count], index) => (
+                <Box key={index} component="li">
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: '1.5rem',
+                marginBottom: 2,
+                color: '#0e3c58',
+              }}
+            >
+              <span style={{ fontWeight: 'bold' }}>
+                {exercise}:{' '}
+              </span>
+              <span style={{ color: '#00aaff' }}>{count}</span>{' '}
+              times
+            </Typography>
                 </Box>
+              ),
+            )}
+          </Box>
               </Box>
             </Box>
           </Box>
