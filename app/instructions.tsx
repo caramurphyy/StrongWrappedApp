@@ -1,4 +1,4 @@
-import { User, Settings, Download, Save, Upload} from 'lucide-react';
+import { User, Settings, Download, Save, Upload } from 'lucide-react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -11,8 +11,8 @@ import Typography from '@mui/material/Typography';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import FileUploadForm from './upload';
-import { ResultsType } from '../types/results'
-import * as motion from "motion/react-client"
+import { ResultsType } from '../types/results';
+import * as motion from 'motion/react-client';
 
 // const steps = [
 //   {icon: <img src="/stronglogo.png" width="30px" height="30px"/>, instructions:'open the Strong app on your phone'},
@@ -23,8 +23,6 @@ import * as motion from "motion/react-client"
 //   {icon: <Upload />, instruction:'upload here!'}
 // ];
 
-
-
 const steps = [
   {
     label: 'Open the Strong app on your phone',
@@ -32,8 +30,7 @@ const steps = [
   },
   {
     label: 'Go to your profile',
-    description:
-      'This should be the leftmost icon in the bottom bar',
+    description: 'This should be the leftmost icon in the bottom bar',
   },
   {
     label: 'Open settings',
@@ -49,7 +46,7 @@ const steps = [
   },
 ];
 
-export default function InstructionsStepper({results, setResults}) {
+export default function InstructionsStepper({ results, setResults }) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -60,52 +57,71 @@ export default function InstructionsStepper({results, setResults}) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-
   return (
     <Box sx={{ maxWidth: 500 }}>
-      <Stepper activeStep={activeStep} orientation="vertical" sx={{".MuiSvgIcon-root":  {fontSize:'30px', color:'#04abfb'}, '.MuiSvgIcon-root.Mui-active': {color:'#04abfb'}, ".MuiSvgIcon-root.Mui-completed": {color:'#1799D8'}
-}}>
+      <Stepper
+        activeStep={activeStep}
+        orientation="vertical"
+        sx={{
+          '.MuiSvgIcon-root': { fontSize: '30px', color: '#04abfb' },
+          '.MuiSvgIcon-root.Mui-active': { color: '#04abfb' },
+          '.MuiSvgIcon-root.Mui-completed': { color: '#1799D8' },
+        }}
+      >
         {steps.map((step, index) => (
-          <Step key={step.label} >
-            <StepLabel
-            >
-                   <div
-            style={{
-             color:'#f3f3f3',fontSize:'20px', marginLeft:5
-            }}
-          >
-              {step.label}</div>
+          <Step key={step.label}>
+            <StepLabel>
+              <div
+                style={{
+                  color: '#f3f3f3',
+                  fontSize: '20px',
+                  marginLeft: 5,
+                }}
+              >
+                {step.label}
+              </div>
             </StepLabel>
             <StepContent>
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <Button
-                disableRipple
-                  onClick={() => { if (activeStep < steps.length - 1) { handleNext(); } }}
-                  sx={{ mt: 1, mr: 1,"&:hover": {
-                    backgroundColor: "transparent",
-  
-                  } }}
-                >  
-                  {index === steps.length - 1 ? <FileUploadForm results={results} setResults={setResults}/> :     <motion.div
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.8 }}
-            > <ArrowDownwardIcon/>   </motion.div>}
-               
+                  disableRipple
+                  onClick={handleNext}
+                  sx={{
+                    mt: 1,
+                    mr: 1,
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
+                  {index != steps.length - 1 && (
+                    <motion.div
+                      whileHover={{ scale: 1.3 }}
+                      whileTap={{ scale: 0.8 }}
+                    >
+                      {' '}
+                      <ArrowDownwardIcon />{' '}
+                    </motion.div>
+                  )}
                 </Button>
-                <Button 
-                disableRipple
+                <Button
+                  disableRipple
                   disabled={index === 0}
                   onClick={handleBack}
-                  sx={{ mt: 1, mr: 1,  "&:hover": {
-                    backgroundColor: "transparent",
-                  } }}
+                  sx={{
+                    mt: 1,
+                    mr: 1,
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                    },
+                  }}
                 >
-              <motion.div
-            whileHover={{ scale: 1.3 }}
-            whileTap={{ scale: 0.8 }}
-        >
-                  <ArrowUpwardIcon/>
+                  <motion.div
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.8 }}
+                  >
+                    <ArrowUpwardIcon />
                   </motion.div>
                 </Button>
               </Box>
@@ -113,9 +129,7 @@ export default function InstructionsStepper({results, setResults}) {
           </Step>
         ))}
       </Stepper>
-
+      <FileUploadForm results={results} setResults={setResults} />
     </Box>
   );
 }
-
-

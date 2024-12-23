@@ -3,24 +3,24 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { ResultsType } from '../types/results';
 
-export default function FileUploadForm({results, setResults}) {
-    const [isLoading, setIsLoading] = useState(false)
-    const [file, setFile] = useState<File | null>(null)
+export default function FileUploadForm({ results, setResults }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files) {
-        setFile(e.target.files[0])
-      }
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
     }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!file) return;
-  
+
     setIsLoading(true);
     const formData = new FormData();
     formData.append('file', file);
-  
+
     try {
       const response = await fetch('/api/process-csv', {
         method: 'POST',
@@ -36,7 +36,10 @@ export default function FileUploadForm({results, setResults}) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
       <label
         htmlFor="file-upload"
         style={{
@@ -65,7 +68,7 @@ export default function FileUploadForm({results, setResults}) {
         <Box
           sx={{
             marginBottom: '20px',
-            marginTop:'0px',
+            marginTop: '0px',
             borderRadius: 5,
             width: '100%',
             textAlign: 'center',
@@ -81,7 +84,7 @@ export default function FileUploadForm({results, setResults}) {
           backgroundColor: '#00aaff',
           '&:hover': { backgroundColor: '#0088cc' },
         }}
-        disabled={isLoading}
+        disabled={isLoading || !file}
       >
         {isLoading ? 'Processing...' : 'Process CSV'}
       </Button>
