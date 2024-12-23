@@ -1,10 +1,9 @@
 {
     "version": 2,
- 
-    "routes": [
-        {
-            "src": "/api/process_csv",
-            "dest": "/api/process_csv.py"
-        }
-    ]
-}
+    "functions": {
+      "app/api/process-csv/route.ts": {
+        "maxDuration": 60
+      }
+    }
+  }
+  
